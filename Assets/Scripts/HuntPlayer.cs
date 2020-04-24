@@ -27,6 +27,7 @@ public class HuntPlayer : MonoBehaviour
     void Update()
     {        
         distanceFromPlayer = Vector3.Distance(player.transform.position, transform.position);
+
         if (hunting)
         {
             if (distanceFromPlayer <= maxDistance && distanceFromPlayer >= minDistance)
