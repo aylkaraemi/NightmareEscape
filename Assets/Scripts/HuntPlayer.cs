@@ -10,6 +10,8 @@ public class HuntPlayer : MonoBehaviour
     public float speed;
     private float distanceFromPlayer;
     private float huntingTrigger = 10.0f;
+    private float minDistance = 2.0f;
+    private float maxDistance = 25.0f;
     private bool hunting = false;
 
 
@@ -27,8 +29,14 @@ public class HuntPlayer : MonoBehaviour
         distanceFromPlayer = Vector3.Distance(player.transform.position, transform.position);
         if (hunting)
         {
-            Vector3 targetDirection = (player.transform.position - transform.position).normalized;
-            hunterRB.AddForce(targetDirection * speed);
+            if (distanceFromPlayer <= maxDistance && distanceFromPlayer >= minDistance)
+            {
+                FollowPlayer();
+            }
+            else
+            {
+                hunting = false;
+            }
         }
         else if (distanceFromPlayer <= huntingTrigger)
         {
@@ -36,5 +44,10 @@ public class HuntPlayer : MonoBehaviour
         }
         
 
+    }
+    void FollowPlayer()
+    {
+        Vector3 targetDirection = (player.transform.position - transform.position).normalized;
+        hunterRB.AddForce(targetDirection * speed);
     }
 }
