@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject projectilePrefab;
+    public GameObject areaAttackPrefab;
+
+    private Rigidbody playerRB;
     public float speed;
     private float horizInput;
     private float vertInput;
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerRB = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -18,7 +22,7 @@ public class PlayerController : MonoBehaviour
     {
         horizInput = Input.GetAxis("Horizontal");
         vertInput = Input.GetAxis("Vertical");
-        transform.Translate(Vector3.right * horizInput * Time.deltaTime * speed);
-        transform.Translate(Vector3.forward * vertInput * Time.deltaTime * speed);
+        playerRB.AddForce(Vector3.right * horizInput * speed);
+        playerRB.AddForce(Vector3.forward * vertInput * speed);
     }
 }
