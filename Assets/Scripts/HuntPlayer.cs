@@ -49,6 +49,7 @@ public class HuntPlayer : MonoBehaviour
     void FollowPlayer()
     {
         Vector3 targetDirection = (player.transform.position - transform.position).normalized;
-        hunterRB.AddForce(targetDirection * speed);
+        //hunterRB.AddForce(targetDirection * speed);
+        transform.Translate(targetDirection * speed * Time.deltaTime);
     }
 }

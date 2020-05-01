@@ -9,8 +9,10 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody playerRB;
     public float speed;
+    public float rotateSpeed;
     private float horizInput;
     private float vertInput;
+    private float rotateInput;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +24,11 @@ public class PlayerController : MonoBehaviour
     {
         horizInput = Input.GetAxis("Horizontal");
         vertInput = Input.GetAxis("Vertical");
-        playerRB.AddForce(Vector3.right * horizInput * speed);
-        playerRB.AddForce(Vector3.forward * vertInput * speed);
+        rotateInput = Input.GetAxis("Rotate");
+        //playerRB.AddForce(Vector3.right * horizInput * speed);
+        //playerRB.AddForce(Vector3.forward * vertInput * speed);
+        transform.Translate(Vector3.right * horizInput * speed * Time.deltaTime);
+        transform.Translate(Vector3.forward * vertInput * speed * Time.deltaTime);
+        transform.Rotate(Vector3.up * rotateInput * rotateSpeed * Time.deltaTime);
     }
 }
