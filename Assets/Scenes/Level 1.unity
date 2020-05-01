@@ -1127,7 +1127,7 @@ Transform:
   m_GameObject: {fileID: 565157217}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: -18}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0.32000002}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -1147,6 +1147,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 0}
   areaAttackPrefab: {fileID: 0}
   speed: 7
+  rotateSpeed: 100
 --- !u!54 &565157223
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1161,7 +1162,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!1 &621216942
 GameObject:
