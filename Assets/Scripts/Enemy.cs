@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
-{
+{    
     private GameManager gameManager;
-    private GameObject player;
+    private GameObject player;    
 
     [Header("Enemy Stats")]
     [SerializeField] int attackPower;
     [SerializeField] float attackSpeed;
     [SerializeField] float attackRange;
+    public int health;
 
     private float currentDistance;
     private float cooldownStart;
-
 
     // Start is called before the first frame update
     void Start()
@@ -37,5 +37,19 @@ public class Enemy : MonoBehaviour
             gameManager.fear += attackPower;
             cooldownStart = Time.time;
         }                
+    }
+
+    void OnMouseDown()
+    {
+        GameObject currentTarget = player.GetComponent<PlayerController>().target;
+        if (currentTarget)
+        {
+            player.GetComponent<PlayerController>().DeselectTarget();
+            player.GetComponent<PlayerController>().SelectTarget(gameObject);
+        }
+        else
+        {
+            player.GetComponent<PlayerController>().SelectTarget(gameObject);
+        }
     }
 }

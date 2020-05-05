@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public GameObject projectilePrefab;
     public GameObject areaAttackPrefab;
+    public GameObject target;
 
     private Rigidbody playerRB;
     private GameManager gameManager;
@@ -13,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [Header("Player Stats")]    
     [SerializeField] float speed = 7;
     [SerializeField] float rotateSpeed = 100;
+    private float maxRange = 10.0f;
 
     private float horizInput;
     private float vertInput;
@@ -43,5 +45,16 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Fear levels have reached maximum");            
         }
+    }
+
+    public void SelectTarget(GameObject newTarget)
+    {
+        target = newTarget;
+        Debug.Log("Target " + target.name + " selected");
+    }
+
+    public void DeselectTarget()
+    {
+        Debug.Log("Target " + target.name + " deselected");
     }
 }
