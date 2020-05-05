@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
 
     public void DeselectTarget()
     {
+        target.GetComponent<Enemy>().targetIndicator.SetActive(false);
         Debug.Log("Target " + target.name + " deselected");
     }
 }

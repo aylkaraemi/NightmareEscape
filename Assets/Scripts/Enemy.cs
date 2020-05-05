@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
-{    
+{
+    public GameObject targetIndicator;
+
     private GameManager gameManager;
     private GameObject player;    
 
@@ -46,10 +48,12 @@ public class Enemy : MonoBehaviour
         {
             player.GetComponent<PlayerController>().DeselectTarget();
             player.GetComponent<PlayerController>().SelectTarget(gameObject);
+            targetIndicator.SetActive(true);
         }
         else
         {
             player.GetComponent<PlayerController>().SelectTarget(gameObject);
+            targetIndicator.SetActive(true);
         }
     }
 }
