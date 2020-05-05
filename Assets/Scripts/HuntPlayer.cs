@@ -8,7 +8,7 @@ public class HuntPlayer : MonoBehaviour
     private GameObject player;
 
     public float speed;
-    private float distanceFromPlayer;
+    public float distanceFromPlayer;
     private float huntingTrigger = 10.0f;
     private float minDistance = 2.0f;
     private float maxDistance = 25.0f;
