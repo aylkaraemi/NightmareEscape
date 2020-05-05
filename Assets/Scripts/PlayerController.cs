@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Fear levels have reached maximum");
+            Debug.Log("Fear levels have reached maximum");            
         }
     }
 }

@@ -6,17 +6,18 @@ public class GameManager : MonoBehaviour
 {
     public List<GameObject> spawners;
 
+
     private int spawnerCount = 3;
 
     public int fear = 0;
     public int maxFear = 1000;
     private int ambientFear = 1;
-    private int increasePerSec = 1;
+    private float increaseSpeed = 1;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(FearIncrease(ambientFear, increasePerSec, true));
+        StartCoroutine(AmbientFearIncrease());
     }
 
     // Update is called once per frame
@@ -34,12 +35,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator FearIncrease(int addFear, int fearRate, bool condition)
+    IEnumerator AmbientFearIncrease()
     {
-        while (condition)
+        while (true)
         {
-            yield return new WaitForSeconds(fearRate);
-            fear += addFear;
+            yield return new WaitForSecondsRealtime(increaseSpeed);
+            fear += ambientFear;
         }  
     }
 }

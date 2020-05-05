@@ -8,24 +8,34 @@ public class Enemy : MonoBehaviour
     private GameObject player;
 
     [Header("Enemy Stats")]
-    public int attackPower;
+    [SerializeField] int attackPower;
+    [SerializeField] float attackSpeed;
+    [SerializeField] float attackRange;
 
-    private float minAttackDistance = 5.0f;
+    private float currentDistance;
+    private float cooldownStart;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Player");        
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        currentDistance = Vector3.Distance(player.transform.position, transform.position);
+        cooldownStart = Time.time;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GetComponent<HuntPlayer>().distanceFromPlayer < minAttackDistance)
+        currentDistance = Vector3.Distance(player.transform.position, transform.position);
+
+        if (currentDistance < attackRange && Time.time > cooldownStart + attackSpeed)
         {
-            gameManager.fear -= attackPower;
-        }
+            gameManager.fear += attackPower;
+            cooldownStart = Time.time;
+        }                
     }
 }
