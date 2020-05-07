@@ -10,10 +10,10 @@ public class Enemy : MonoBehaviour
     private GameObject player;    
 
     [Header("Enemy Stats")]
+    public int health;
     [SerializeField] int attackPower;
     [SerializeField] float attackSpeed;
-    [SerializeField] float attackRange;
-    public int health;
+    [SerializeField] float attackRange;    
 
     private float currentDistance;
     private float cooldownStart;
@@ -38,6 +38,6 @@ public class Enemy : MonoBehaviour
         {
             gameManager.fear += attackPower;
             cooldownStart = Time.time;
-        }                
+        }        
     }    
 }

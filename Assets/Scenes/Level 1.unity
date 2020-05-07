@@ -216,10 +216,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetIndicator: {fileID: 1337159834}
+  health: 3
   attackPower: 10
   attackSpeed: 1.5
   attackRange: 2
-  health: 0
 --- !u!23 &283986059
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -708,10 +708,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetIndicator: {fileID: 1905003774}
+  health: 5
   attackPower: 5
   attackSpeed: 2
   attackRange: 5
-  health: 0
 --- !u!1 &565157217
 GameObject:
   m_ObjectHideFlags: 0
@@ -817,11 +817,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a56fa48fff6a654785a56ad0c265db0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 7
+  rotateSpeed: 100
   projectilePrefab: {fileID: 0}
   areaAttackPrefab: {fileID: 0}
   target: {fileID: 0}
-  speed: 7
-  rotateSpeed: 100
 --- !u!54 &565157223
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1437,10 +1437,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetIndicator: {fileID: 0}
+  health: 0
   attackPower: 0
   attackSpeed: 0
   attackRange: 5
-  health: 0
 --- !u!1 &1337159834
 GameObject:
   m_ObjectHideFlags: 0

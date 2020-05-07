@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Player Stats")]
+    [SerializeField] float speed = 7;
+    [SerializeField] float rotateSpeed = 100;
+
     [Header("Attacks")]
     public GameObject projectilePrefab;
     public GameObject areaAttackPrefab;
     public GameObject target;
+    private float maxRange = 10.0f;
+    private float targetDist;
+    private int firePower = 1;
+    private int aoePower = 3;
 
     private Rigidbody playerRB;
     private GameManager gameManager;
-
-    [Header("Player Stats")]    
-    [SerializeField] float speed = 7;
-    [SerializeField] float rotateSpeed = 100;
-    private float maxRange = 10.0f;
 
     private float horizInput;
     private float vertInput;
@@ -34,6 +37,11 @@ public class PlayerController : MonoBehaviour
     {
         if (gameManager.fear < gameManager.maxFear)
         {
+            if (target)
+            {
+                targetDist = Vector3.Distance(target.transform.position, transform.position);
+            }
+
             horizInput = Input.GetAxis("Horizontal");
             vertInput = Input.GetAxis("Vertical");
             rotateInput = Input.GetAxis("Rotate");
@@ -67,9 +75,10 @@ public class PlayerController : MonoBehaviour
             }
 
             // Attack targeted enemy
-            if (Input.GetKeyDown(KeyCode.Alpha1) && target)
+            if (Input.GetKeyDown(KeyCode.Alpha1) && target && targetDist <= maxRange)
             {
-                Debug.Log("Single target attack used");
+                target.GetComponent<Enemy>().health -= firePower;
+                Debug.Log(target + " health is " + target.GetComponent<Enemy>().health);
             }
             // Attack surrounding enemies
             if (Input.GetKeyDown(KeyCode.Alpha2))
