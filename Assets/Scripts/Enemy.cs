@@ -38,6 +38,11 @@ public class Enemy : MonoBehaviour
         {
             gameManager.fear += attackPower;
             cooldownStart = Time.time;
-        }        
+        }
+
+        if (health < 1)
+        {
+            Destroy(gameObject);
+        }
     }    
 }
