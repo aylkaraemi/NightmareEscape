@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b397678fd7d974a93e6ce0be10a4d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetIndicator: {fileID: 0}
+  targetIndicator: {fileID: 1337159834}
   attackPower: 10
   attackSpeed: 1.5
   attackRange: 2
@@ -707,7 +707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3b397678fd7d974a93e6ce0be10a4d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetIndicator: {fileID: 0}
+  targetIndicator: {fileID: 1905003774}
   attackPower: 5
   attackSpeed: 2
   attackRange: 5

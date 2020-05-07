@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Attacks")]
     public GameObject projectilePrefab;
     public GameObject areaAttackPrefab;
     public GameObject target;
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
     {
         playerRB = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
     }
 
     // Update is called once per frame
@@ -40,22 +42,55 @@ public class PlayerController : MonoBehaviour
             transform.Translate(Vector3.right * horizInput * speed * Time.deltaTime);
             transform.Translate(Vector3.forward * vertInput * speed * Time.deltaTime);
             transform.Rotate(Vector3.up * rotateInput * rotateSpeed * Time.deltaTime);
+
+            // Target Enemy
+            if (Input.GetMouseButtonDown(0))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    if (hit.transform.CompareTag("Enemy") || hit.transform.CompareTag("Spawner"))
+                    {
+                        if (target)
+                        {
+                            DeselectTarget();
+                        }
+                        SelectTarget(hit.transform.gameObject);
+                    }
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.Escape) && target)
+            {
+                DeselectTarget();
+            }
+
+            // Attack targeted enemy
+            if (Input.GetKeyDown(KeyCode.Alpha1) && target)
+            {
+                Debug.Log("Single target attack used");
+            }
+            // Attack surrounding enemies
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                Debug.Log("AOE attack used");
+            }
         }
         else
         {
             Debug.Log("Fear levels have reached maximum");            
         }
     }
-
+        
     public void SelectTarget(GameObject newTarget)
     {
         target = newTarget;
-        Debug.Log("Target " + target.name + " selected");
+        target.GetComponent<Enemy>().targetIndicator.SetActive(true);
     }
 
     public void DeselectTarget()
     {
         target.GetComponent<Enemy>().targetIndicator.SetActive(false);
-        Debug.Log("Target " + target.name + " deselected");
     }
 }

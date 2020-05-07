@@ -39,21 +39,5 @@ public class Enemy : MonoBehaviour
             gameManager.fear += attackPower;
             cooldownStart = Time.time;
         }                
-    }
-
-    void OnMouseDown()
-    {
-        GameObject currentTarget = player.GetComponent<PlayerController>().target;
-        if (currentTarget)
-        {
-            player.GetComponent<PlayerController>().DeselectTarget();
-            player.GetComponent<PlayerController>().SelectTarget(gameObject);
-            targetIndicator.SetActive(true);
-        }
-        else
-        {
-            player.GetComponent<PlayerController>().SelectTarget(gameObject);
-            targetIndicator.SetActive(true);
-        }
-    }
+    }    
 }
