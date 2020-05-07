@@ -15,8 +15,12 @@ public class PlayerController : MonoBehaviour
     private float maxRange = 10.0f;
     private float targetDist;
     private int firePower = 1;
+    private float shootCooldown = 1.5f;
+    private float shootCDEnd;
     private int aoePower = 3;
     private float aoeRadius = 5;
+    private int aoeCooldown = 5;
+    private float aoeCDEnd;
 
     private Rigidbody playerRB;
     private GameManager gameManager;
@@ -30,7 +34,7 @@ public class PlayerController : MonoBehaviour
     {
         playerRB = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-
+        shootCDEnd = aoeCDEnd = Time.time;
     }
 
     // Update is called once per frame
@@ -76,13 +80,14 @@ public class PlayerController : MonoBehaviour
             }
 
             // Attack targeted enemy
-            if (Input.GetKeyDown(KeyCode.Alpha1) && target && targetDist <= maxRange)
+            if (Input.GetKeyDown(KeyCode.Alpha1) && target && targetDist <= maxRange && Time.time >= shootCDEnd)
             {
                 target.GetComponent<Enemy>().health -= firePower;
+                shootCDEnd = Time.time + shootCooldown;
                 Debug.Log(target + " health is " + target.GetComponent<Enemy>().health);
             }
             // Attack surrounding enemies
-            if (Input.GetKeyDown(KeyCode.Alpha2))
+            if (Input.GetKeyDown(KeyCode.Alpha2) && Time.time >= aoeCDEnd)
             {
                 Debug.Log("AOE attack used");
                 Collider[] hitEnemies = Physics.OverlapSphere(transform.position, aoeRadius);
@@ -94,6 +99,8 @@ public class PlayerController : MonoBehaviour
                         collider.gameObject.GetComponent<Enemy>().health -= aoePower;
                     }
                 }
+
+                aoeCDEnd = Time.time + aoeCooldown;
             }
         }
     }
