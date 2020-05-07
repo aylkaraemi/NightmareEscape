@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private float targetDist;
     private int firePower = 1;
     private int aoePower = 3;
+    private float aoeRadius = 5;
 
     private Rigidbody playerRB;
     private GameManager gameManager;
@@ -84,6 +85,15 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 Debug.Log("AOE attack used");
+                Collider[] hitEnemies = Physics.OverlapSphere(transform.position, aoeRadius);
+
+                foreach (var collider in hitEnemies)
+                {
+                    if (collider.gameObject.CompareTag("Enemy") || collider.gameObject.CompareTag("Spawner"))
+                    {
+                        collider.gameObject.GetComponent<Enemy>().health -= aoePower;
+                    }
+                }
             }
         }
     }
