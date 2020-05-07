@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRB;
     private GameManager gameManager;
 
-    private float horizInput;
+    //private float horizInput;
     private float vertInput;
     private float rotateInput;
 
@@ -47,12 +47,12 @@ public class PlayerController : MonoBehaviour
                 targetDist = Vector3.Distance(target.transform.position, transform.position);
             }
 
-            horizInput = Input.GetAxis("Horizontal");
+            //horizInput = Input.GetAxis("Horizontal"); Still bugs to solve in strafing
             vertInput = Input.GetAxis("Vertical");
             rotateInput = Input.GetAxis("Rotate");
             //playerRB.AddForce(Vector3.right * horizInput * speed);
             //playerRB.AddForce(Vector3.forward * vertInput * speed);
-            transform.Translate(Vector3.right * horizInput * speed * Time.deltaTime);
+            //transform.Translate(Vector3.right * horizInput * speed * Time.deltaTime);
             transform.Translate(Vector3.forward * vertInput * speed * Time.deltaTime);
             transform.Rotate(Vector3.up * rotateInput * rotateSpeed * Time.deltaTime);
 
@@ -74,8 +74,10 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
+
+            // Deselect target without selecting new
             if (Input.GetKeyDown(KeyCode.Escape) && target)
-            {
+            {                
                 DeselectTarget();
             }
 

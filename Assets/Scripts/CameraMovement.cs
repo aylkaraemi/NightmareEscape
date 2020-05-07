@@ -8,15 +8,20 @@ public class CameraMovement : MonoBehaviour
 
     private float height = 5f;
     private float distance;
+    private float speed = 5f;
     private Vector3 prevPos, moveDir;
+    private float xRotation = 34f;
+    private Vector3 offset = new Vector3(0.0f, 4.0f, -6.0f);
+    public bool stillRotation = false;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
 
-        prevPos = player.transform.position;       
-        distance = (transform.position - player.transform.position).magnitude;               
+        prevPos = player.transform.position;
+        distance = (offset).magnitude;
+        moveDir = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -30,8 +35,12 @@ public class CameraMovement : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y + height, transform.position.z);
 
             transform.LookAt(player.transform.position);
-
+            // works as long as player is moving. If player rotates than stops, rotation snaps
+            // have not yet figured out a solution to smooth this that doesn't make the rotation
+            // when moving odd (curving a little too far on turns, like the camera behind a car in
+            // a driving game, but really weird for following a person)
+            
             prevPos = player.transform.position;
-        }       
+        }
     }
 }
