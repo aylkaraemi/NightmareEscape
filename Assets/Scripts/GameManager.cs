@@ -5,7 +5,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public List<GameObject> spawners;
-
+    private GameObject exit;
+    private GameObject player;
 
     private int spawnerCount = 3;
 
@@ -13,17 +14,24 @@ public class GameManager : MonoBehaviour
     public int maxFear = 1000;
     private int ambientFear = 1;
     private float increaseSpeed = 1;
+    private bool gameActive;
 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(AmbientFearIncrease());
+        exit = GameObject.Find("Escape Portal");
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (fear >= maxFear)
+        {
+            gameActive = false;
+            GameLost();
+        }
     }
 
     public void SpawnTarget(List<GameObject> targets, int spawnCount)
@@ -42,5 +50,17 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(increaseSpeed);
             fear += ambientFear;
         }  
+    }
+
+    void GameLost()
+    {
+        gameActive = false;
+        Debug.Log("Fear has reached maximum, you are lost in nightmare");
+    }
+
+    public void GameWin()
+    {
+        gameActive = false;
+        Debug.Log("You've escaped!");
     }
 }

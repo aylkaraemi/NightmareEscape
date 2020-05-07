@@ -86,10 +86,6 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("AOE attack used");
             }
         }
-        else
-        {
-            Debug.Log("Fear levels have reached maximum");            
-        }
     }
         
     public void SelectTarget(GameObject newTarget)
@@ -101,5 +97,13 @@ public class PlayerController : MonoBehaviour
     public void DeselectTarget()
     {
         target.GetComponent<Enemy>().targetIndicator.SetActive(false);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Exit"))
+        {
+            gameManager.GameWin();
+        }
     }
 }

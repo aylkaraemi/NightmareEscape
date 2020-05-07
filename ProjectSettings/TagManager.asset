@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Spawner
   - Powerup
+  - Exit
   layers:
   - Default
   - TransparentFX
