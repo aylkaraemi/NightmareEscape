@@ -38,6 +38,7 @@ public class Enemy : MonoBehaviour
         if (currentDistance < attackRange && Time.time > cooldownStart + attackSpeed)
         {
             gameManager.fear += attackPower;
+            player.GetComponent<PlayerController>().hit.Play();
             cooldownStart = Time.time;
         }
 
@@ -45,5 +46,5 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }    
+    }
 }

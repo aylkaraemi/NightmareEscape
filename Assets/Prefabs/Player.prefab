@@ -124,7 +124,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 7
   rotateSpeed: 100
-  areaAttackBurst: {fileID: 0}
+  areaAttackBurst: {fileID: 3778715261295880581, guid: 5973e2cc7803d2b4fae8bd5cfb58afa2,
+    type: 3}
+  hit: {fileID: 19860484, guid: 6586ff0f14125534cae2f5d8f04b7871, type: 3}
   playerAnim: {fileID: 646206060253756843}
   playerModel: {fileID: 646206060263132713}
 --- !u!1001 &646206060263229643

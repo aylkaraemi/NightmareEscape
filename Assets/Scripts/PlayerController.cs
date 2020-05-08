@@ -9,13 +9,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float rotateSpeed = 100;
 
     [Header("Attacks")]
-    private ParticleSystem directAttackBurst;
     public ParticleSystem areaAttackBurst;
+    public ParticleSystem hit;
     private GameObject target;
     private float maxRange = 10.0f;
     private float targetDist;
     private int firePower = 1;
-    private float shootCooldown = 1.5f;
+    private float shootCooldown = 0.5f;
     private float shootCDEnd;
     private int aoePower = 3;
     private float aoeRadius = 5;
@@ -117,6 +117,7 @@ public class PlayerController : MonoBehaviour
         {
             target.GetComponent<Enemy>().health -= firePower;
             playerAnim.SetBool("Shoot_b", true);
+            target.GetComponent<Enemy>().hitBurst.Play();
             shootCDEnd = Time.time + shootCooldown;
             Debug.Log(target + " health is " + target.GetComponent<Enemy>().health);
         }
@@ -143,6 +144,7 @@ public class PlayerController : MonoBehaviour
             }
 
             playerAnim.SetBool("Jump_b", true);
+            areaAttackBurst.Play();
 
             aoeCDEnd = Time.time + aoeCooldown;
         }
