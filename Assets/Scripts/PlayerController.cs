@@ -50,59 +50,19 @@ public class PlayerController : MonoBehaviour
             }
 
             Move();
-
-            // Target Enemy
-            if (Input.GetMouseButtonDown(0))
-            {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit))
-                {
-                    if (hit.transform.CompareTag("Enemy") || hit.transform.CompareTag("Spawner"))
-                    {
-                        if (target)
-                        {
-                            DeselectTarget();
-                        }
-                        SelectTarget(hit.transform.gameObject);
-                    }
-                }
-            }
+            Target();
+            DirectAttack();
+            AOEAttack();
 
             // Deselect target without selecting new
             if (Input.GetKeyDown(KeyCode.Escape) && target)
-            {                
+            {
                 DeselectTarget();
-            }
-
-            // Attack targeted enemy
-            if (Input.GetKeyDown(KeyCode.Alpha1) && target && targetDist <= maxRange && Time.time >= shootCDEnd)
-            {
-                target.GetComponent<Enemy>().health -= firePower;
-                shootCDEnd = Time.time + shootCooldown;
-                Debug.Log(target + " health is " + target.GetComponent<Enemy>().health);
-            }
-            // Attack surrounding enemies
-            if (Input.GetKeyDown(KeyCode.Alpha2) && Time.time >= aoeCDEnd)
-            {
-                Debug.Log("AOE attack used");
-                Collider[] hitEnemies = Physics.OverlapSphere(transform.position, aoeRadius);
-
-                foreach (var collider in hitEnemies)
-                {
-                    if (collider.gameObject.CompareTag("Enemy") || collider.gameObject.CompareTag("Spawner"))
-                    {
-                        collider.gameObject.GetComponent<Enemy>().health -= aoePower;
-                    }
-                }
-
-                aoeCDEnd = Time.time + aoeCooldown;
             }
         }
     }
 
-    public void Move()
+    private void Move()
     {
         //horizInput = Input.GetAxis("Horizontal"); Still bugs to solve in strafing
         vertInput = Input.GetAxis("Vertical");
@@ -122,6 +82,58 @@ public class PlayerController : MonoBehaviour
         //playerRB.AddForce(Vector3.forward * vertInput * speed);
         //transform.Translate(Vector3.right * horizInput * speed * Time.deltaTime);        
         transform.Rotate(Vector3.up * rotateInput * rotateSpeed * Time.deltaTime);
+    }
+
+    private void Target()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.transform.CompareTag("Enemy") || hit.transform.CompareTag("Spawner"))
+                {
+                    if (target)
+                    {
+                        DeselectTarget();
+                    }
+                    SelectTarget(hit.transform.gameObject);
+                }
+            }
+        }        
+    }
+
+    private void DirectAttack()
+    {
+        // Attack targeted enemy
+        if (Input.GetKeyDown(KeyCode.Alpha1) && target && targetDist <= maxRange && Time.time >= shootCDEnd)
+        {
+            target.GetComponent<Enemy>().health -= firePower;
+            shootCDEnd = Time.time + shootCooldown;
+            Debug.Log(target + " health is " + target.GetComponent<Enemy>().health);
+        }
+    }
+
+    private void AOEAttack()
+    {
+        // Attack surrounding enemies
+        if (Input.GetKeyDown(KeyCode.Alpha2) && Time.time >= aoeCDEnd)
+        {
+            Debug.Log("AOE attack used");
+            Collider[] hitEnemies = Physics.OverlapSphere(transform.position, aoeRadius);
+
+            foreach (var collider in hitEnemies)
+            {
+                if (collider.gameObject.CompareTag("Enemy") || collider.gameObject.CompareTag("Spawner"))
+                {
+                    collider.gameObject.GetComponent<Enemy>().health -= aoePower;
+                }
+            }
+
+            aoeCDEnd = Time.time + aoeCooldown;
+        }
     }
         
     public void SelectTarget(GameObject newTarget)
