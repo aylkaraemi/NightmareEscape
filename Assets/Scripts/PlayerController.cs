@@ -1,12 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    private GameManager gameManager;
+    
     [Header("Player Stats")]
     [SerializeField] float speed = 7;
-    [SerializeField] float rotateSpeed = 100;
+    [SerializeField] float rotateSpeed = 100;    
 
     [Header("Attacks")]
     public ParticleSystem areaAttackBurst;
@@ -22,10 +22,14 @@ public class PlayerController : MonoBehaviour
     private int aoeCooldown = 5;
     private float aoeCDEnd;
 
-    //private Rigidbody playerRB;
-    private GameManager gameManager;
+    [Header("Sound and Animation")]
+    //private Rigidbody playerRB;    
     public Animator playerAnim;
     public GameObject playerModel;
+    public AudioSource playerAudio;
+    public AudioClip feared;
+    public AudioClip attack;
+    public AudioClip burst;
 
     //private float horizInput;
     private float vertInput;
@@ -37,6 +41,7 @@ public class PlayerController : MonoBehaviour
         //playerRB = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         shootCDEnd = aoeCDEnd = Time.time;
+        playerAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -117,7 +122,8 @@ public class PlayerController : MonoBehaviour
         {
             target.GetComponent<Enemy>().health -= firePower;
             playerAnim.SetBool("Shoot_b", true);
-            target.GetComponent<Enemy>().hitBurst.Play();
+            playerAudio.PlayOneShot(attack, 1.0f);
+            target.GetComponent<Enemy>().Injured();
             shootCDEnd = Time.time + shootCooldown;
             Debug.Log(target + " health is " + target.GetComponent<Enemy>().health);
         }
@@ -145,6 +151,8 @@ public class PlayerController : MonoBehaviour
 
             playerAnim.SetBool("Jump_b", true);
             areaAttackBurst.Play();
+            playerAudio.PlayOneShot(burst, 1.0f);
+            target.GetComponent<Enemy>().Injured();
 
             aoeCDEnd = Time.time + aoeCooldown;
         }
@@ -165,6 +173,12 @@ public class PlayerController : MonoBehaviour
     public void DeselectTarget()
     {
         target.GetComponent<Enemy>().targetIndicator.SetActive(false);
+    }
+
+    public void Feared()
+    {
+        hit.Play();
+        playerAudio.PlayOneShot(feared);
     }
 
     void OnCollisionEnter(Collision collision)
