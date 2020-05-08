@@ -8,13 +8,13 @@ public class GameManager : MonoBehaviour
     private GameObject exit;
     private GameObject player;
 
-    private int spawnerCount = 3;
+    //private int spawnerCount = 3;
 
     public int fear = 0;
     public int maxFear = 1000;
     private int ambientFear = 1;
     private float increaseSpeed = 1;
-    private bool gameActive;
+    private bool gameActive = false;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // For stretch goal - want to randomize starting locations of spawners
     public void SpawnTarget(List<GameObject> targets, int spawnCount)
     {
         for (int i = 0; i < spawnCount; i++)

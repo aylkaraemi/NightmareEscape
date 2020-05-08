@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public GameObject targetIndicator;
+    public ParticleSystem hitBurst;
 
     private GameManager gameManager;
     private GameObject player;    

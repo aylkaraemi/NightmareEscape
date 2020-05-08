@@ -1671,9 +1671,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: Death_b
     m_EventTreshold: 0
-  - m_ConditionMode: 6
-    m_ConditionEvent: DeathType_int
-    m_EventTreshold: 2
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110204794}
   m_Solo: 0
@@ -4199,14 +4196,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 6
-    m_ConditionEvent: WeaponType_int
-    m_EventTreshold: 1
   - m_ConditionMode: 1
     m_ConditionEvent: Shoot_b
-    m_EventTreshold: 1
-  - m_ConditionMode: 2
-    m_ConditionEvent: Reload_b
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110266762}
@@ -8341,7 +8332,7 @@ AnimatorStateMachine:
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
-  m_EntryPosition: {x: 50, y: 120, z: 0}
+  m_EntryPosition: {x: -120, y: 84, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 110216906}
@@ -8362,7 +8353,7 @@ AnimatorStateMachine:
     m_Position: {x: -72, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110204794}
-    m_Position: {x: 168, y: 180, z: 0}
+    m_Position: {x: 444, y: 144, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110214858}
     m_Position: {x: 168, y: 240, z: 0}
@@ -8448,7 +8439,7 @@ AnimatorStateMachine:
     m_Position: {x: 24, y: 72, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110284647}
-    m_Position: {x: 24, y: 168, z: 0}
+    m_Position: {x: 12, y: 192, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110232942}
     m_Position: {x: 24, y: 252, z: 0}

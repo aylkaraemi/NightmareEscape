@@ -9,8 +9,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float rotateSpeed = 100;
 
     [Header("Attacks")]
-    public GameObject projectilePrefab;
-    public GameObject areaAttackPrefab;
+    private ParticleSystem directAttackBurst;
+    public ParticleSystem areaAttackBurst;
     private GameObject target;
     private float maxRange = 10.0f;
     private float targetDist;
@@ -59,6 +59,10 @@ public class PlayerController : MonoBehaviour
             {
                 DeselectTarget();
             }
+        }
+        else
+        {
+            playerAnim.SetBool("Death_b", true);
         }
     }
 
@@ -111,8 +115,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1) && target && targetDist <= maxRange && Time.time >= shootCDEnd)
         {
             target.GetComponent<Enemy>().health -= firePower;
+            playerAnim.SetBool("Shoot_b", true);
             shootCDEnd = Time.time + shootCooldown;
             Debug.Log(target + " health is " + target.GetComponent<Enemy>().health);
+        }
+        else
+        {
+            playerAnim.SetBool("Shoot_b", false);
         }
     }
 
@@ -132,7 +141,13 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
+            playerAnim.SetBool("Jump_b", true);
+
             aoeCDEnd = Time.time + aoeCooldown;
+        }
+        else
+        {
+            playerAnim.SetBool("Jump_b", false);
         }
     }
         
