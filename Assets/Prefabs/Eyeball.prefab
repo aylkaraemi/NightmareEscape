@@ -110,7 +110,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &7423686799771919161
 MonoBehaviour:
@@ -143,7 +143,7 @@ MonoBehaviour:
   health: 3
   attackPower: 10
   attackSpeed: 1.5
-  attackRange: 2
+  attackRange: 5
 --- !u!1001 &4884682079966144063
 PrefabInstance:
   m_ObjectHideFlags: 0

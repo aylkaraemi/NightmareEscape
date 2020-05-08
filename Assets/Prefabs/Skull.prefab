@@ -143,7 +143,7 @@ MonoBehaviour:
   health: 3
   attackPower: 10
   attackSpeed: 1.5
-  attackRange: 2
+  attackRange: 5
 --- !u!1001 &5797099087307924495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -259,7 +259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4721473126883556, guid: 1aeca1bd9f707c245a80c7f103d235f9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4721473126883556, guid: 1aeca1bd9f707c245a80c7f103d235f9, type: 3}
       propertyPath: m_LocalRotation.z
@@ -267,7 +267,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4721473126883556, guid: 1aeca1bd9f707c245a80c7f103d235f9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4721473126883556, guid: 1aeca1bd9f707c245a80c7f103d235f9, type: 3}
       propertyPath: m_RootOrder
@@ -279,7 +279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4721473126883556, guid: 1aeca1bd9f707c245a80c7f103d235f9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4721473126883556, guid: 1aeca1bd9f707c245a80c7f103d235f9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

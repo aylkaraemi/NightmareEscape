@@ -10,7 +10,7 @@ public class HuntPlayer : MonoBehaviour
     public float speed;
     public float distanceFromPlayer;
     private float huntingTrigger = 10.0f;
-    private float minDistance = 2.0f;
+    private float minDistance = 5.0f;
     private float maxDistance = 25.0f;
     private bool hunting = false;
 
@@ -51,5 +51,6 @@ public class HuntPlayer : MonoBehaviour
         Vector3 targetDirection = (player.transform.position - transform.position).normalized;
         //hunterRB.AddForce(targetDirection * speed);
         transform.Translate(targetDirection * speed * Time.deltaTime);
+        transform.LookAt(player.transform.position);
     }
 }

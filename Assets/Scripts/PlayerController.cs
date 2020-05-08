@@ -157,7 +157,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Selecting target " + newTarget.name);
         target = newTarget;        
         target.GetComponent<Enemy>().targetIndicator.SetActive(true);
-        Debug.Log("target indicator is: " + target.GetComponent<Enemy>().targetIndicator.active);
+        Debug.Log("target indicator is: " + target.GetComponent<Enemy>().targetIndicator.activeSelf);
     }
 
     public void DeselectTarget()
