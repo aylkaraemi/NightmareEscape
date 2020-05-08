@@ -98,12 +98,13 @@ public class PlayerController : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.transform.CompareTag("Enemy") || hit.transform.CompareTag("Spawner"))
-                {
+                {                    
                     if (target)
                     {
                         DeselectTarget();
                     }
                     SelectTarget(hit.transform.gameObject);
+                    Debug.Log("Target is " + target.name);
                 }
             }
         }        
@@ -153,8 +154,10 @@ public class PlayerController : MonoBehaviour
         
     public void SelectTarget(GameObject newTarget)
     {
-        target = newTarget;
+        Debug.Log("Selecting target " + newTarget.name);
+        target = newTarget;        
         target.GetComponent<Enemy>().targetIndicator.SetActive(true);
+        Debug.Log("target indicator is: " + target.GetComponent<Enemy>().targetIndicator.active);
     }
 
     public void DeselectTarget()

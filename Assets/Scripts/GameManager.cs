@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public int maxFear = 1000;
     private int ambientFear = 1;
     private float increaseSpeed = 1;
-    private bool gameActive = false;
+    public bool gameActive = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(AmbientFearIncrease());
         exit = GameObject.Find("Escape Portal");
         player = GameObject.Find("Player");
+        gameActive = true;
     }
 
     // Update is called once per frame
@@ -35,18 +36,21 @@ public class GameManager : MonoBehaviour
     }
 
     // For stretch goal - want to randomize starting locations of spawners
-    public void SpawnTarget(List<GameObject> targets, int spawnCount)
-    {
-        for (int i = 0; i < spawnCount; i++)
-        {
-            int index = Random.Range(0, targets.Count);
-            Instantiate(targets[index]);
-        }
-    }
+    //public void SpawnTarget(List<GameObject> targets, int spawnCount)
+    //{
+    //    if (gameActive)
+    //    {
+    //        for (int i = 0; i < spawnCount; i++)
+    //        {
+    //            int index = Random.Range(0, targets.Count);
+    //            Instantiate(targets[index]);
+    //        }
+    //    }        
+    //}
 
     IEnumerator AmbientFearIncrease()
     {
-        while (true)
+        while (gameActive)
         {
             yield return new WaitForSecondsRealtime(increaseSpeed);
             fear += ambientFear;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HuntPlayer : MonoBehaviour
 {
-    private Rigidbody hunterRB;
+    //private Rigidbody hunterRB;
     private GameObject player;
 
     public float speed;
@@ -18,7 +18,7 @@ public class HuntPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hunterRB = GetComponent<Rigidbody>();
+        //hunterRB = GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
         distanceFromPlayer = Vector3.Distance(player.transform.position, transform.position);
     }
@@ -30,7 +30,7 @@ public class HuntPlayer : MonoBehaviour
 
         if (hunting)
         {
-            if (distanceFromPlayer <= maxDistance && distanceFromPlayer >= minDistance)
+            if (distanceFromPlayer <= maxDistance && distanceFromPlayer > minDistance)
             {
                 FollowPlayer();
             }
