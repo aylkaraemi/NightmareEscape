@@ -6,13 +6,11 @@ public class CameraMovement : MonoBehaviour
 {
     private GameObject player;
 
-    private float height = 5f;
+    private float height = 2f;
     private float distance;
-    private float speed = 5f;
     private Vector3 prevPos, moveDir;
-    private float xRotation = 34f;
+    private float xRotation = 15f;
     private Vector3 offset = new Vector3(0.0f, 4.0f, -6.0f);
-    public bool stillRotation = false;
 
     // Start is called before the first frame update
     void Start()
@@ -21,16 +19,17 @@ public class CameraMovement : MonoBehaviour
 
         prevPos = player.transform.position;
         distance = (offset).magnitude;
-        moveDir = Vector3.zero;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
         moveDir = player.transform.position - prevPos;
+        
         if (moveDir != Vector3.zero)
         {
             moveDir.Normalize();
+            
             transform.position = player.transform.position - moveDir * distance;
             transform.position = new Vector3(transform.position.x, transform.position.y + height, transform.position.z);
 
@@ -41,6 +40,6 @@ public class CameraMovement : MonoBehaviour
             // a driving game, but really weird for following a person)
             
             prevPos = player.transform.position;
-        }
+        }        
     }
 }

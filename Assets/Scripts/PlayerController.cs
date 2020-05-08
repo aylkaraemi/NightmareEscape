@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [Header("Attacks")]
     public GameObject projectilePrefab;
     public GameObject areaAttackPrefab;
-    public GameObject target;
+    private GameObject target;
     private float maxRange = 10.0f;
     private float targetDist;
     private int firePower = 1;
@@ -22,8 +22,10 @@ public class PlayerController : MonoBehaviour
     private int aoeCooldown = 5;
     private float aoeCDEnd;
 
-    private Rigidbody playerRB;
+    //private Rigidbody playerRB;
     private GameManager gameManager;
+    public Animator playerAnim;
+    public GameObject playerModel;
 
     //private float horizInput;
     private float vertInput;
@@ -32,7 +34,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerRB = GetComponent<Rigidbody>();
+        //playerRB = GetComponent<Rigidbody>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         shootCDEnd = aoeCDEnd = Time.time;
     }
@@ -47,14 +49,7 @@ public class PlayerController : MonoBehaviour
                 targetDist = Vector3.Distance(target.transform.position, transform.position);
             }
 
-            //horizInput = Input.GetAxis("Horizontal"); Still bugs to solve in strafing
-            vertInput = Input.GetAxis("Vertical");
-            rotateInput = Input.GetAxis("Rotate");
-            //playerRB.AddForce(Vector3.right * horizInput * speed);
-            //playerRB.AddForce(Vector3.forward * vertInput * speed);
-            //transform.Translate(Vector3.right * horizInput * speed * Time.deltaTime);
-            transform.Translate(Vector3.forward * vertInput * speed * Time.deltaTime);
-            transform.Rotate(Vector3.up * rotateInput * rotateSpeed * Time.deltaTime);
+            Move();
 
             // Target Enemy
             if (Input.GetMouseButtonDown(0))
@@ -105,6 +100,28 @@ public class PlayerController : MonoBehaviour
                 aoeCDEnd = Time.time + aoeCooldown;
             }
         }
+    }
+
+    public void Move()
+    {
+        //horizInput = Input.GetAxis("Horizontal"); Still bugs to solve in strafing
+        vertInput = Input.GetAxis("Vertical");
+        rotateInput = Input.GetAxis("Rotate");
+        if (vertInput != 0)
+        {
+            playerAnim.SetBool("IsMoving", true);
+            transform.Translate(Vector3.forward * vertInput * speed * Time.deltaTime);
+            playerModel.transform.position = transform.position;
+        }
+        else
+        {
+            playerAnim.SetBool("IsMoving", false);
+        }
+        // May try physics based movement later but for now going with Translate
+        //playerRB.AddForce(Vector3.right * horizInput * speed);
+        //playerRB.AddForce(Vector3.forward * vertInput * speed);
+        //transform.Translate(Vector3.right * horizInput * speed * Time.deltaTime);        
+        transform.Rotate(Vector3.up * rotateInput * rotateSpeed * Time.deltaTime);
     }
         
     public void SelectTarget(GameObject newTarget)
