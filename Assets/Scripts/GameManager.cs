@@ -1,9 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("UI")]
+    public GameObject titleScreen;
+    public TextMeshProUGUI gameLoseText;
+    public TextMeshProUGUI gameWinText;
+    public Button restartButton;
+
+    [Header("Gameplay")]
     public List<GameObject> spawners;
     private GameObject exit;
     private GameObject player;
@@ -14,7 +24,8 @@ public class GameManager : MonoBehaviour
     public int maxFear = 1000;
     private int ambientFear = 1;
     private float increaseSpeed = 1;
-    public bool gameActive = false;
+    public bool gameActive;
+    private bool gameWon;
 
     // Start is called before the first frame update
     void Start()
