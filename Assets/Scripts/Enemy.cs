@@ -55,16 +55,12 @@ public class Enemy : MonoBehaviour
 
         if (currentDistance < attackRange && Time.time > cooldownStart + attackSpeed)
         {
-            enemyAnim.SetBool("attack", true);
+            enemyAnim.SetTrigger("attack");
             enemyAudio.PlayOneShot(attack, 1.0f);
             gameManager.fear += attackPower;
             player.GetComponent<PlayerController>().Feared();
             cooldownStart = Time.time;
-        }
-        else
-        {
-            enemyAnim.SetBool("attack", false);
-        }        
+        }      
     }
 
     public void Injured()
