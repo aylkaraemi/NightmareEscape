@@ -112,6 +112,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &597778 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3368164483487194432, guid: 07acc2025b70c1849a8c9c9c01af7fd2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1116791581}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2792ea3599ccc9d4b8f3bafdecd5345a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &30234935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2082,6 +2094,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 929602493}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &948478452 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3368164483487194432, guid: 07acc2025b70c1849a8c9c9c01af7fd2,
+    type: 3}
+  m_PrefabInstance: {fileID: 3368164484006875682}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2792ea3599ccc9d4b8f3bafdecd5345a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &969399752
 GameObject:
   m_ObjectHideFlags: 0
@@ -2588,7 +2612,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1178270156}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1822192650}
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1178270156
@@ -3171,6 +3206,18 @@ Transform:
   m_Father: {fileID: 969399756}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 90, y: 180, z: 270}
+--- !u!114 &1592489236 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3368164483487194432, guid: 07acc2025b70c1849a8c9c9c01af7fd2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1148163245}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2792ea3599ccc9d4b8f3bafdecd5345a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1656219214
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3634,9 +3681,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a2f8fd2acb22ce4ba3e3692c5882f46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawners: []
+  titleScreen: {fileID: 716610297}
+  gameLoseText: {fileID: 1262453906}
+  gameWinText: {fileID: 421639099}
+  restartButton: {fileID: 1178270155}
+  fadeInOut: {fileID: 795119651}
   fear: 0
-  maxFear: 1000
+  maxFear: 200
   gameActive: 0
 --- !u!4 &1822192651
 Transform:
@@ -3730,7 +3781,51 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1977026949}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1822192650}
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 948478452}
+        m_MethodName: SpawnWave
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 597778}
+        m_MethodName: SpawnWave
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1592489236}
+        m_MethodName: SpawnWave
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1977026949

@@ -9,41 +9,28 @@ public class GameManager : MonoBehaviour
 {
     [Header("UI")]
     public GameObject titleScreen;
-    public TextMeshProUGUI gameLoseText;
-    public TextMeshProUGUI gameWinText;
+    public GameObject gameLoseText;
+    public GameObject gameWinText;
     public Button restartButton;
 
     [Header("Gameplay")]
-    public List<GameObject> spawners;
-    private GameObject exit;
-    private GameObject player;
+    //public List<GameObject> spawners;
+    public Animator fadeInOut;
 
     //private int spawnerCount = 3;
 
     public int fear = 0;
-    public int maxFear = 1000;
+    public int maxFear;
     private int ambientFear = 1;
     private float increaseSpeed = 1;
     public bool gameActive;
-    private bool gameWon;
 
-    // Start is called before the first frame update
-    void Start()
+    public void StartGame()
     {
-        StartCoroutine(AmbientFearIncrease());
-        exit = GameObject.Find("Escape Portal");
-        player = GameObject.Find("Player");
         gameActive = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (fear >= maxFear)
-        {
-            gameActive = false;
-            GameLost();
-        }
+        StartCoroutine(AmbientFearIncrease());
+        titleScreen.SetActive(false);
+        fadeInOut.SetBool("gameActive", true);
     }
 
     // For stretch goal - want to randomize starting locations of spawners
@@ -65,18 +52,36 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSecondsRealtime(increaseSpeed);
             fear += ambientFear;
-        }  
+            if (fear >= maxFear)
+            {
+                GameLost();
+            }
+        }
+        
     }
 
     void GameLost()
     {
         gameActive = false;
+        fadeInOut.SetBool("gameActive", false);
+        fadeInOut.SetBool("gameLose", true);
+        gameLoseText.SetActive(true);
+        restartButton.gameObject.SetActive(true);
         Debug.Log("Fear has reached maximum, you are lost in nightmare");
     }
 
     public void GameWin()
     {
         gameActive = false;
+        fadeInOut.SetBool("gameActive", false);
+        fadeInOut.SetBool("gameWin", true);
+        gameWinText.SetActive(true);
+        restartButton.gameObject.SetActive(true);
         Debug.Log("You've escaped!");
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

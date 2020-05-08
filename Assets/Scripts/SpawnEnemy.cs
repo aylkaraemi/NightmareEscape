@@ -8,7 +8,7 @@ public class SpawnEnemy : MonoBehaviour
     private GameManager gameManager;
     private Vector3 spawnPos;
     private float startDelay = 0f;
-    private float repeatRate = 15f;
+    private float repeatRate = 5f;
     private int spawnCount = 3;
 
     // Start is called before the first frame update
@@ -18,13 +18,7 @@ public class SpawnEnemy : MonoBehaviour
         spawnPos = transform.position;
         InvokeRepeating("SpawnWave", startDelay, repeatRate);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
         
-    }
-
     public void SpawnWave()
     {
         if (gameManager.gameActive)
